@@ -8,4 +8,6 @@ object Routes {
     const val HOLIDAY = "holiday"
     const val PROFILE = "profile"
     const val NOTIFICATION = "notification"
+    const val APPLY_LEAVE = "apply_leave"
+    const val EDIT_PROFILE = "edit_profile"
 }
