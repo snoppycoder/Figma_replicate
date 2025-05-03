@@ -5,7 +5,7 @@ const bcrypt = require('bcrypt');
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
-userRouter.get('/', async (req, res) => {
+userRouter.get('/', identifyUser, async (req, res) => {
     try {
         const users = await prisma.user.findMany();
         res.json(users);
@@ -13,7 +13,5 @@ userRouter.get('/', async (req, res) => {
         res.status(500).json({ error: 'Could not retrieve users' });
     }
 });
-
-
 
 module.exports = userRouter;

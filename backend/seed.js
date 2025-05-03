@@ -2,14 +2,14 @@ const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
 async function main() {
-    // Array of users to insert
-    await prisma.user.deleteMany();
-    console.log('Deleted all existing users.');
+    //use this to erase the data first and populate again
+    // await prisma.user.deleteMany();
+    // console.log('Deleted all existing users.');
 
     const users = [
-        { age: 20, email: 'alice@example.com', password : 'password' },
-        { age: 20, email: 'bob@example.com', password : 'password' },
-        { age: 20, email: 'charlie@example.com', password : 'password'  },
+        { username : "alice", email: 'alice@example.com', password : 'password' },
+        { username : "bob",  email : 'bob@example.com', password : 'password' },
+        { username : "sam", email: 'charlie@example.com', password : 'password'  },
     ];
 
     // Insert users into the database

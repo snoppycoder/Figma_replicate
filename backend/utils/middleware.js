@@ -16,13 +16,16 @@ const unknownEndpoint = (request, response) => {
 }
 
 const getTokenFrom = (request, response, next) => {
-  // console.log(request)
-      const auth = request.get('authorization')
-      if (auth && auth.startsWith('Bearer ')){
-          request.token = auth.replace('Bearer ', '')  
-      } 
-      next()
-    }
+  const auth = request.get('authorization');
+  logger.info('Authorization header:', auth); // Debug
+  if (auth && auth.toLowerCase().startsWith('bearer ')) {
+    request.token = auth.slice(7);
+    logger.info('Extracted token:', request.token); // Debug
+  } else {
+    logger.warn('No valid Bearer token found');
+  }
+  next();
+};
 
 const identifyUser = async (req, res, next) => {
   const token = req.token; 
